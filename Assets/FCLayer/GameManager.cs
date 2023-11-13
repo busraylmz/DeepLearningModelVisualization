@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int outputLayerPerceptronCount = 2;
     [SerializeField] private List<int> hiddenLayerPerceptronCount;
 
-    [SerializeField] private int hiddenLayerCount = 3;
+    [SerializeField] private int hiddenLayerCount = 2;
 
     public Vector3 startPos = new Vector3(-1, 1.25f, 2);
 
@@ -78,9 +78,10 @@ public class GameManager : MonoBehaviour
                 var spawnedPercetron = Instantiate(_perceptronPrefab, new Vector3(x, y, z), Quaternion.identity);
 
                 hiddenLayerPerceptrons.Add(spawnedPercetron.GetComponent<Perceptron>());
+                LayerList.Add(hiddenLayerPerceptrons);
             }
            // hiddenLayerPerceptronCount = 84;
-            LayerList.Add(hiddenLayerPerceptrons);
+           
 
         }
 
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
 
             for (int i = 0; i < LayerList[k].Count; i++)
             {
-                LayerList[k][i].OutputLinesGenerator.GenerateOutpuLines2NextLayer(LayerList[k + 1]);
+                LayerList[k][i].OutputLinesGenerator.GenerateOutpuLines2NextLayer(LayerList[i + 1]);
             }
 
         }
