@@ -127,11 +127,7 @@ public class FilterAnimationController : MonoBehaviour
             anim.PlayQueued(name);
         }
 
-        if (!anim.isPlaying)
-        {
-            GetAnimationClip_2();
-        }
-
+   
     }
 
 
