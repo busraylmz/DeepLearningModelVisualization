@@ -11,17 +11,17 @@ public class FilterAnimationController : MonoBehaviour
     void Start()
     {
         //GetFilterAnimation();
-        if(filter.name == "conv2d_30_filter_0")
+       // if(filter.name == "conv2d_30_filter_0")
+       // {
+       //     GetAnimationClip_2();
+       // }
+         if(filter.name == "yatay")
         {
-            GetAnimationClip_2();
-        }
-        else if(filter.name == "yatay")
-        {
-            GetAnimationClip_3();
+         //   GetAnimationClip_3();
         }
         else if (filter.name == "dikey")
         {
-            GetAnimationClip_4();
+          //  GetAnimationClip_4();
         }
        
      //   PlayAnim();
@@ -85,9 +85,10 @@ public class FilterAnimationController : MonoBehaviour
 
 
 
-    public void GetAnimationClip_2()
+    public void GetAnimationClip_2(GameObject filter)
     {
-       // Vector3 position = new Vector3(-1.34f, 1.33f, 0f);
+        Debug.Log("busraaaaaaaaaaaaaa"+filter.name);
+        // Vector3 position = new Vector3(-1.34f, 1.33f, 0f);
         float positionX = -1.29f;
         float positionY = 1.3f;
         anim = filter.GetComponent<Animation>();
@@ -131,14 +132,14 @@ public class FilterAnimationController : MonoBehaviour
     }
 
 
-    public void GetAnimationClip_3()
+    public void GetAnimationClip_3(GameObject horizontal)
     {
         //yatay
         // Vector3 position = new Vector3(-1.34f, 1.33f, 0f);
         float positionX = 0f;
 
         float positionY = 1.3f;
-        anim = filter.GetComponent<Animation>();
+        anim = horizontal.GetComponent<Animation>();
 
 
         float start = 0.0f;
@@ -177,7 +178,7 @@ public class FilterAnimationController : MonoBehaviour
         }
     }
 
-    public void GetAnimationClip_4()
+    public void GetAnimationClip_4(GameObject vertical)
     {
         //dikey
 
@@ -186,7 +187,7 @@ public class FilterAnimationController : MonoBehaviour
 
         float positionY =-0.13f;
         //float scaleY = 2.75f;
-        anim = filter.GetComponent<Animation>();
+        anim = vertical.GetComponent<Animation>();
 
 
         float start = 0.0f;
