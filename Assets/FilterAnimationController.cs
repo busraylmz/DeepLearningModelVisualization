@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FilterAnimationController : MonoBehaviour
@@ -9,6 +10,7 @@ public class FilterAnimationController : MonoBehaviour
     public GameObject beforeParent;
     Vector3 position = new Vector3(0, 0, 0);
 
+    public List<GameObject> textFilters;
 
     List<string> clipname = new List<string>();
 
