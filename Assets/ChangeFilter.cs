@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ChangeFilter : MonoBehaviour
 {
-    FilterAnimationController filterAnimation = new FilterAnimationController();
-    public GameObject parent;
-    public GameObject vertical;
-    public GameObject horizontal;
+    
+   
+
 
     public GameObject convFeature;
     public Sprite featuremapSprite;
@@ -26,12 +25,18 @@ public class ChangeFilter : MonoBehaviour
     public void playFilterAnimation()
     {
         convFeature.transform.GetComponent<SpriteRenderer>().sprite = featuremapSprite;
-        gameObject.transform.parent = parent.transform;
+       
         Debug.Log("busraaaaaaaaaaaaaa");
+        FilterAnimationController.instance.GetAnimationClip_2(gameObject);
+        FilterAnimationController.instance.GetAnimationClip_3();
+        FilterAnimationController.instance.GetAnimationClip_4();
         //filterAnimation.filter = gameObject;
-        filterAnimation.GetAnimationClip_2(gameObject);
-        filterAnimation.GetAnimationClip_3(horizontal);
-        filterAnimation.GetAnimationClip_4(vertical);
+        //FilterAnimationController filterAnimation = new FilterAnimationController();
+        //filterAnimation.GetAnimationClip_2(gameObject);
+        //FilterAnimationController filterAnimation_1 = new FilterAnimationController();
+        //filterAnimation_1.GetAnimationClip_3(horizontal);
+        //FilterAnimationController filterAnimation_2 = new FilterAnimationController();
+        //filterAnimation_2.GetAnimationClip_4(vertical);
 
     }
 }

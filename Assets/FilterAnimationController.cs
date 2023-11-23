@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class FilterAnimationController : MonoBehaviour
 {
+    public GameObject parent;
+     GameObject beforeFilter = null;
+    public GameObject beforeParent;
+    Vector3 position = new Vector3(0, 0, 0);
 
-    public GameObject filter;
+
     List<string> clipname = new List<string>();
+
+    public static FilterAnimationController instance;
+    public GameObject vertical;
+    public GameObject horizontal;
+
     // Start is called before the first frame update
     void Start()
     {
-        //GetFilterAnimation();
-       // if(filter.name == "conv2d_30_filter_0")
-       // {
-       //     GetAnimationClip_2();
-       // }
-         if(filter.name == "yatay")
+        if (instance != null && instance != this)
         {
-         //   GetAnimationClip_3();
+            Destroy(this);
+            return;
         }
-        else if (filter.name == "dikey")
-        {
-          //  GetAnimationClip_4();
-        }
-       
-     //   PlayAnim();
+        instance = this;
+
     }
 
     public AnimationClip GetAnimationClip()
@@ -57,41 +58,38 @@ public class FilterAnimationController : MonoBehaviour
         return clip;
 
     }
-    private Animation anim;
-
-    private Animation GetFilterAnimation()
-    {
-        try
-        {
-            anim = filter.GetComponent<Animation>();
-        }
-        catch (MissingComponentException)
-        {
-            Debug.LogError("DigitalTwinController::Animation is missing.");
-        }
-        catch (System.NullReferenceException)
-        {
-            Debug.LogError("DigitalTwinController::Animation is null.");
-        }
-
-        return anim;
-    }
-    public void PlayAnim()
-    {
-
-        anim.AddClip(GetAnimationClip(), "test");
-        anim.Play("test");
-    }
+   // private Animation anim;
 
 
-
+    Animation animfilter = null;
     public void GetAnimationClip_2(GameObject filter)
     {
+        if(beforeFilter != null)
+        {
+            if(beforeFilter.name != filter.name)
+            {
+                beforeFilter.transform.parent = beforeParent.transform;
+                beforeFilter.transform.position = position;
+            }
+        }
+
+       
+        beforeFilter = filter;
+        position = beforeFilter.transform.position;
+        filter.transform.parent = parent.transform;
+
         Debug.Log("busraaaaaaaaaaaaaa"+filter.name);
         // Vector3 position = new Vector3(-1.34f, 1.33f, 0f);
         float positionX = -1.29f;
         float positionY = 1.3f;
-        anim = filter.GetComponent<Animation>();
+
+        if (animfilter != null)
+        {
+            if (animfilter.isPlaying)
+                animfilter.Stop();
+        }
+
+        animfilter = filter.GetComponent<Animation>();
       
 
         float start = 0.0f;
@@ -115,8 +113,8 @@ public class FilterAnimationController : MonoBehaviour
 
 
 
-           
-            anim.AddClip(clip, "test"+i);
+
+            animfilter.AddClip(clip, "test"+i);
             clipname.Add("test" + i);
             positionY = positionY - 0.1f;
           //  start = start + 3.0f;
@@ -124,22 +122,32 @@ public class FilterAnimationController : MonoBehaviour
         }
        
         foreach(string name in clipname){
-            
-            anim.PlayQueued(name);
+
+            animfilter.PlayQueued(name);
         }
 
    
     }
 
-
-    public void GetAnimationClip_3(GameObject horizontal)
+    Animation animhorizontal = null;
+    public void GetAnimationClip_3()
     {
         //yatay
         // Vector3 position = new Vector3(-1.34f, 1.33f, 0f);
         float positionX = 0f;
 
         float positionY = 1.3f;
-        anim = horizontal.GetComponent<Animation>();
+
+       
+
+
+        if (animhorizontal != null)
+        {
+            if (animhorizontal.isPlaying)
+                animhorizontal.Stop();
+        }
+
+        animhorizontal = horizontal.GetComponent<Animation>();
 
 
         float start = 0.0f;
@@ -164,7 +172,7 @@ public class FilterAnimationController : MonoBehaviour
 
 
 
-            anim.AddClip(clip, "test" + i);
+            animhorizontal.AddClip(clip, "test" + i);
             clipname.Add("test" + i);
             positionY = positionY - 0.1f;
             //  start = start + 3.0f;
@@ -174,11 +182,12 @@ public class FilterAnimationController : MonoBehaviour
         foreach (string name in clipname)
         {
 
-            anim.PlayQueued(name);
+            animhorizontal.PlayQueued(name);
         }
     }
 
-    public void GetAnimationClip_4(GameObject vertical)
+    Animation animvertical = null;
+    public void GetAnimationClip_4()
     {
         //dikey
 
@@ -187,7 +196,14 @@ public class FilterAnimationController : MonoBehaviour
 
         float positionY =-0.13f;
         //float scaleY = 2.75f;
-        anim = vertical.GetComponent<Animation>();
+        
+        if (animvertical != null)
+        {
+            if (animvertical.isPlaying)
+                animvertical.Stop();
+        }
+
+        animvertical = vertical.GetComponent<Animation>();
 
 
         float start = 0.0f;
@@ -217,7 +233,7 @@ public class FilterAnimationController : MonoBehaviour
 
 
 
-            anim.AddClip(clip, "test" + i);
+            animvertical.AddClip(clip, "test" + i);
             clipname.Add("test" + i);
             positionY = positionY - 0.1f;
           //  scaleY = scaleY - (scaleY/27);
@@ -228,7 +244,7 @@ public class FilterAnimationController : MonoBehaviour
         foreach (string name in clipname)
         {
 
-            anim.PlayQueued(name);
+            animvertical.PlayQueued(name);
         }
     }
 }
