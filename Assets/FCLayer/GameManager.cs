@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         {
             y  -= perceptronPadding;
             var spawnedPercetron = Instantiate(_perceptronPrefab, new Vector3(x, y, z), Quaternion.identity);
-
+            spawnedPercetron.transform.parent = gameObject.transform;
             
             InputLayerPerceptrons.Add(spawnedPercetron.GetComponent<Perceptron>());
         }
@@ -76,12 +76,13 @@ public class GameManager : MonoBehaviour
 
                 y -= perceptronPadding;
                 var spawnedPercetron = Instantiate(_perceptronPrefab, new Vector3(x, y, z), Quaternion.identity);
+                spawnedPercetron.transform.parent = gameObject.transform;
 
                 hiddenLayerPerceptrons.Add(spawnedPercetron.GetComponent<Perceptron>());
-                LayerList.Add(hiddenLayerPerceptrons);
+               
             }
-           // hiddenLayerPerceptronCount = 84;
-           
+            // hiddenLayerPerceptronCount = 84;
+            LayerList.Add(hiddenLayerPerceptrons);
 
         }
 
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
         {
             y -= perceptronPadding;
             var spawnedPercetron = Instantiate(_perceptronPrefab, new Vector3(x, y, z), Quaternion.identity);
+            spawnedPercetron.transform.parent = gameObject.transform;
 
             OutputLayerPerceptrons.Add(spawnedPercetron.GetComponent<Perceptron>());
         }
@@ -106,7 +108,11 @@ public class GameManager : MonoBehaviour
 
             for (int i = 0; i < LayerList[k].Count; i++)
             {
-                LayerList[k][i].OutputLinesGenerator.GenerateOutpuLines2NextLayer(LayerList[i + 1]);
+                if (k != 3)
+                {
+                    LayerList[k][i].OutputLinesGenerator.GenerateOutpuLines2NextLayer(LayerList[k + 1],gameObject);
+                }
+                
             }
 
         }

@@ -138,8 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8925d0280a34d394a85c3fa67fd13474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lineRendererGO: {fileID: 1098727101229410792, guid: 6adf8ed89e5cc3a469446d9cf005ab39,
-    type: 3}
+  _lineRendererGO: {fileID: 1098727101229410792, guid: d69fc66a8b1e16c4688b4d13be5d7e6d, type: 3}
 --- !u!1 &9146028092217961534
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 9146028092217961534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 8164058631935197253}
   - {fileID: 8164058632286042049}

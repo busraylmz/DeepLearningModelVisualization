@@ -11,8 +11,8 @@ public class ActivationCheck : MonoBehaviour
     {
         Debug.Log("ChangeActivation()" + gameObject.name);
         flag = !flag;
-        go.SetActive(flag);
-        if (flag == true)
+        go.SetActive(flag );
+        if ((flag == true) & (gameObject.name != "FC1Layer"))
             gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
         else
             gameObject.transform.localScale = new Vector3(1f, 1f, 1f);

@@ -11,6 +11,7 @@ public class FilterAnimationController : MonoBehaviour
     Vector3 position = new Vector3(0, 0, 0);
 
     public List<GameObject> textFilters;
+    public List<GameObject> featureMapList = new List<GameObject>();
 
     List<string> clipname = new List<string>();
 

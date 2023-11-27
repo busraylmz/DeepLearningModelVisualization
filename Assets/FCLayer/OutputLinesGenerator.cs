@@ -13,7 +13,7 @@ public class OutputLinesGenerator : MonoBehaviour
         spawnedLines = new Dictionary<GameObject, Perceptron>();
     }
 
-    public void GenerateOutpuLines2NextLayer(List<Perceptron> nextLayerConnectedPerceptrons)
+    public void GenerateOutpuLines2NextLayer(List<Perceptron> nextLayerConnectedPerceptrons,GameObject gameManager)
     {
 
         
@@ -21,7 +21,8 @@ public class OutputLinesGenerator : MonoBehaviour
         for (int i = 0; i < nextLayerConnectedPerceptrons.Count; i++)
         {
             var spawnedLineRendereGO = Instantiate(_lineRendererGO, transform.position, Quaternion.identity);
-           // spawnedLineRendereGO
+            spawnedLineRendereGO.transform.parent = gameManager.transform;
+            // spawnedLineRendereGO
 
 
             LineRenderer spawnedLine = spawnedLineRendereGO.GetComponent<LineRenderer>();
