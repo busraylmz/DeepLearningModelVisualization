@@ -28,7 +28,6 @@ public class ChangeFilter : MonoBehaviour
     {
         convFeature.transform.GetComponent<SpriteRenderer>().sprite = featuremapSprite;
        
-        Debug.Log("busraaaaaaaaaaaaaa");
         FilterAnimationController.instance.GetAnimationClip_2(gameObject);
         FilterAnimationController.instance.GetAnimationClip_3();
         FilterAnimationController.instance.GetAnimationClip_4();
@@ -40,9 +39,9 @@ public class ChangeFilter : MonoBehaviour
             Debug.Log("gameoject:" + gameobjectfilter.transform.parent.name);
             if (go.name == gameObject.name)
             {
-                FilterAnimationController.instance.featureMapList[i].GetComponent<Image>().color = Color.red;
+                FilterAnimationController.instance.featureMapList[i].GetComponent<Image>().color = Color.blue;
                 Debug.Log("==:" + gameobjectfilter.transform.parent.name);
-                gameobjectfilter.SetActive(true);
+              //  gameobjectfilter.SetActive(true);
                 gameobjectfilter2.GetComponent<TMP_Text>().text = gameobjectfilter.GetComponent<TMP_Text>().text;
                 
             }
@@ -50,7 +49,7 @@ public class ChangeFilter : MonoBehaviour
             {
                 FilterAnimationController.instance.featureMapList[i].GetComponent<Image>().color = Color.cyan;
                 Debug.Log("!=:" + gameobjectfilter.transform.parent.name);
-                gameobjectfilter.SetActive(false);
+               //gameobjectfilter.SetActive(false);
             }
             i++;
         }
