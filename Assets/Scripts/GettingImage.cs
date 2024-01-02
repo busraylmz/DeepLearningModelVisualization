@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -8,14 +9,26 @@ public class GettingImage : MonoBehaviour
 {
     // Specify the folder path where your images are located
     public string folderPath = "Assets/feature_maps_alexnet_2";
-    public List<Sprite> conv1_spriteRenderer = new List<Sprite>();
-    public List<Sprite> maxpool1_spriteRenderer = new List<Sprite>();
-    public  List<Sprite> conv2_spriteRenderer = new List<Sprite>();
-    public List<Sprite> maxpool2_spriteRenderer = new List<Sprite>();
-    public List<Sprite> conv3_spriteRenderer = new List<Sprite>();
-    public List<Sprite> conv4_spriteRenderer = new List<Sprite>();
-    public List<Sprite> conv5_spriteRenderer = new List<Sprite>();
-    public  List<Sprite> maxpool3_spriteRenderer = new List<Sprite>();
+
+    public SortedList<int, Sprite> conv1_spriteRenderer = new SortedList<int, Sprite>();
+    public SortedList<int, Sprite> maxpool1_spriteRenderer = new SortedList<int, Sprite>();
+    public SortedList<int, Sprite> conv2_spriteRenderer = new SortedList<int, Sprite>();
+    public SortedList<int, Sprite> maxpool2_spriteRenderer = new SortedList<int, Sprite>();
+    public SortedList<int, Sprite> conv3_spriteRenderer = new SortedList<int, Sprite>();
+    public SortedList<int, Sprite> conv4_spriteRenderer = new SortedList<int, Sprite>();
+    public SortedList<int, Sprite> conv5_spriteRenderer = new SortedList<int, Sprite>();
+    public SortedList<int, Sprite> maxpool3_spriteRenderer = new SortedList<int, Sprite>();
+
+
+
+    public List<Sprite> conv1_spriteRenderer2 = new List<Sprite>();
+    public List<Sprite> maxpool1_spriteRenderer2 = new List<Sprite>();
+    public  List<Sprite> conv2_spriteRenderer2 = new List<Sprite>();
+    public List<Sprite> maxpool2_spriteRenderer2 = new List<Sprite>();
+    public List<Sprite> conv3_spriteRenderer2 = new List<Sprite>();
+    public List<Sprite> conv4_spriteRenderer2 = new List<Sprite>();
+    public List<Sprite> conv5_spriteRenderer2 = new List<Sprite>();
+    public  List<Sprite> maxpool3_spriteRenderer2 = new List<Sprite>();
 
     public static GettingImage instance = null;
 
@@ -56,50 +69,66 @@ public class GettingImage : MonoBehaviour
 
                 Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
+             
+
                 if (filename.StartsWith("0_"))
                 {
-                   //conv1
-              //      Debug.Log("0_:" + filename);
-                    conv1_spriteRenderer.Add(sprite);
+                    int index = filename.IndexOf(".");
+                    string fileNumber = filename.Substring(14, index - 14);
+                    int fileNo = Convert.ToInt32(fileNumber);
+                    conv1_spriteRenderer.Add(fileNo, sprite);
 
                 }
                 else if (filename.StartsWith("2_"))
                 {
-                    //maxpool_1
-              //      Debug.Log("2_:" + filename);
-                    maxpool1_spriteRenderer.Add(sprite);
+                    int index = filename.IndexOf(".");
+                    string fileNumber = filename.Substring(14, index - 14);
+                    int fileNo = Convert.ToInt32(fileNumber);
+                    maxpool1_spriteRenderer.Add(fileNo, sprite);
                 }
                 else if (filename.StartsWith("3_"))
                 {
-               //     Debug.Log("3_:" + filename);
-                    conv2_spriteRenderer.Add(sprite);
+                    int index = filename.IndexOf(".");
+                    string fileNumber = filename.Substring(14, index - 14);
+                    int fileNo = Convert.ToInt32(fileNumber);
+                    conv2_spriteRenderer.Add(fileNo, sprite);
                 }
                 else if (filename.StartsWith("5_"))
                 {
-               //     Debug.Log("5_:" + filename);
-                    maxpool2_spriteRenderer.Add(sprite);
+                    int index = filename.IndexOf(".");
+                    string fileNumber = filename.Substring(14, index - 14);
+                    int fileNo = Convert.ToInt32(fileNumber);
+                    maxpool2_spriteRenderer.Add(fileNo, sprite);
                 }
                 else if (filename.StartsWith("6_"))
                 {
-               //     Debug.Log("6_:" + filename);
-                    conv3_spriteRenderer.Add(sprite);
+                    int index = filename.IndexOf(".");
+                    string fileNumber = filename.Substring(14, index - 14);
+                    int fileNo = Convert.ToInt32(fileNumber);
+                    conv3_spriteRenderer.Add(fileNo, sprite);
                 }
                 else if (filename.StartsWith("8_"))
                 {
-                //    Debug.Log("8_:" + filename);
-                    conv4_spriteRenderer.Add(sprite);
+                    int index = filename.IndexOf(".");
+                    string fileNumber = filename.Substring(14, index - 14);
+                    int fileNo = Convert.ToInt32(fileNumber);
+                    conv4_spriteRenderer.Add(fileNo, sprite);
                 }
                 else if (filename.StartsWith("10_"))
                 {
-               //     Debug.Log("10_:" + filename);
-                    conv5_spriteRenderer.Add(sprite);
+                    int index = filename.IndexOf(".");
+                    string fileNumber = filename.Substring(15, index - 15);
+                    int fileNo = Convert.ToInt32(fileNumber);
+                    conv5_spriteRenderer.Add(fileNo, sprite);
                 }
                 else if (filename.StartsWith("12_"))
                 {
-                 //   Debug.Log("12_:" + filename);
-                    maxpool3_spriteRenderer.Add(sprite);
+                    int index = filename.IndexOf(".");
+                    string fileNumber = filename.Substring(15, index - 15);
+                    int fileNo = Convert.ToInt32(fileNumber);
+                    maxpool3_spriteRenderer.Add(fileNo, sprite);
                 }
-              
+
                 // Create a new GameObject with a SpriteRenderer to display the image
                 //GameObject imageObject = new GameObject(Path.GetFileNameWithoutExtension(imagePath));
                 //imageObject.AddComponent<SpriteRenderer>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
@@ -112,4 +141,9 @@ public class GettingImage : MonoBehaviour
             Debug.LogError("Folder not found: " + folderPath);
         }
     }
+
+
+
+
+
 }

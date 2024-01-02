@@ -26,12 +26,17 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         if (gameObject.name.Equals("Conv1Cube"))
         {
             Debug.Log("conv1");
-            spriteList = GettingImage.instance.conv1_spriteRenderer;
+            //spriteList = GettingImage.instance.conv1_spriteRenderer.Values;
 
 
             Transform parentTransform = GridObjectCollection.transform;
-         
+            foreach (int featureNo in GettingImage.instance.conv1_spriteRenderer.Keys)
+            {
 
+                Debug.Log("featureNo: " + featureNo);
+
+
+            }
             // Iterate through all children of the parent GameObject
             foreach (Transform childTransform in parentTransform)
             {
@@ -43,8 +48,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
 
             Debug.Log("gameObjectImageList.size::"+ gameObjectImageList.Count);
             int i = 0;
-            foreach(Sprite featureSprite in spriteList)
+            foreach(Sprite featureSprite in GettingImage.instance.conv1_spriteRenderer.Values)
             {
+              //  Debug.Log("Texture name: " + featureSprite.texture.name);
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
                 i++;
@@ -55,7 +61,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         else if (gameObject.name.Equals("MaxPool_1_Cube"))
         {
             Debug.Log("MaxPool_1_Cube");
-            spriteList = GettingImage.instance.maxpool1_spriteRenderer;
+         //   spriteList = GettingImage.instance.maxpool1_spriteRenderer;
 
             Transform parentTransform = GridObjectCollection.transform;
             // Iterate through all children of the parent GameObject
@@ -68,7 +74,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
             }
             Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
             int i = 0;
-            foreach (Sprite featureSprite in spriteList)
+            foreach (Sprite featureSprite in GettingImage.instance.maxpool1_spriteRenderer.Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -78,7 +84,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         else if (gameObject.name.Equals("Conv2Cube"))
         {
             Debug.Log("conv2");
-            spriteList = GettingImage.instance.conv2_spriteRenderer;
+         //   spriteList = GettingImage.instance.conv2_spriteRenderer;
 
             Transform parentTransform = GridObjectCollection.transform;
             // Iterate through all children of the parent GameObject
@@ -91,7 +97,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
             }
             Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
             int i = 0;
-            foreach (Sprite featureSprite in spriteList)
+            foreach (Sprite featureSprite in GettingImage.instance.conv2_spriteRenderer.Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -101,7 +107,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         else if (gameObject.name.Equals("MaxPool_2_Cube"))
         {
             Debug.Log("maxpool_2");
-            spriteList = GettingImage.instance.maxpool2_spriteRenderer;
+          //  spriteList = GettingImage.instance.maxpool2_spriteRenderer;
 
             Transform parentTransform = GridObjectCollection.transform;
             // Iterate through all children of the parent GameObject
@@ -114,7 +120,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
             }
             Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
             int i = 0;
-            foreach (Sprite featureSprite in spriteList)
+            foreach (Sprite featureSprite in GettingImage.instance.maxpool2_spriteRenderer.Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -124,7 +130,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         else if (gameObject.name.Equals("Conv3Cube"))
         {
             Debug.Log("conv3");
-            spriteList = GettingImage.instance.conv3_spriteRenderer;
+            //spriteList = GettingImage.instance.conv3_spriteRenderer;
 
             Transform parentTransform = GridObjectCollection.transform;
             // Iterate through all children of the parent GameObject
@@ -137,7 +143,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
             }
             Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
             int i = 0;
-            foreach (Sprite featureSprite in spriteList)
+            foreach (Sprite featureSprite in GettingImage.instance.conv3_spriteRenderer.Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -147,7 +153,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         else if (gameObject.name.Equals("Conv4Cube"))
         {
             Debug.Log("conv4");
-            spriteList = GettingImage.instance.conv4_spriteRenderer;
+           // spriteList = GettingImage.instance.conv4_spriteRenderer;
 
             Transform parentTransform = GridObjectCollection.transform;
             // Iterate through all children of the parent GameObject
@@ -160,7 +166,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
             }
             Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
             int i = 0;
-            foreach (Sprite featureSprite in spriteList)
+            foreach (Sprite featureSprite in GettingImage.instance.conv4_spriteRenderer.Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -170,7 +176,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         else if (gameObject.name.Equals("Conv5Cube"))
         {
             Debug.Log("conv5");
-            spriteList = GettingImage.instance.conv5_spriteRenderer;
+            //spriteList = GettingImage.instance.conv5_spriteRenderer;
 
             Transform parentTransform = GridObjectCollection.transform;
             // Iterate through all children of the parent GameObject
@@ -183,7 +189,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
             }
             Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
             int i = 0;
-            foreach (Sprite featureSprite in spriteList)
+            foreach (Sprite featureSprite in GettingImage.instance.conv5_spriteRenderer.Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -193,7 +199,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         else if (gameObject.name.Equals("MaxPool_3_Cube"))
         {
             Debug.Log("MaxPool_3_Cube");
-            spriteList = GettingImage.instance.maxpool3_spriteRenderer;
+           // spriteList = GettingImage.instance.maxpool3_spriteRenderer;
 
             Transform parentTransform = GridObjectCollection.transform;
             // Iterate through all children of the parent GameObject
@@ -206,7 +212,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
             }
             Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
             int i = 0;
-            foreach (Sprite featureSprite in spriteList)
+            foreach (Sprite featureSprite in GettingImage.instance.maxpool3_spriteRenderer.Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
