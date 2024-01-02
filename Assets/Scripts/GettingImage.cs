@@ -8,7 +8,7 @@ using UnityEngine;
 public class GettingImage : MonoBehaviour
 {
     // Specify the folder path where your images are located
-    public string folderPath = "Assets/feature_maps_alexnet_2";
+    public string folderPath = "Assets/feature_maps_alexnet";
 
     public SortedList<int, Sprite> conv1_spriteRenderer = new SortedList<int, Sprite>();
     public SortedList<int, Sprite> maxpool1_spriteRenderer = new SortedList<int, Sprite>();
@@ -50,6 +50,7 @@ public class GettingImage : MonoBehaviour
         // Check if the folder exists
         if (Directory.Exists(folderPath))
         {
+            Debug.Log("folder exist");
             // Get all files (images) in the folder
             string[] imagePaths = Directory.GetFiles(folderPath, "*.png");
           
@@ -63,9 +64,9 @@ public class GettingImage : MonoBehaviour
                 Texture2D texture = new Texture2D(2, 2);
                 texture.LoadImage(fileData); // Load image data into the texture
 
-            //    Debug.Log("imagePath:" + imagePath);
-                string filename = imagePath.Substring(30);
-            //    Debug.Log("filename:" + filename);
+                Debug.Log("imagePath:" + imagePath);
+                string filename = imagePath.Substring(28);
+                Debug.Log("filename:" + filename);
 
                 Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
@@ -73,6 +74,7 @@ public class GettingImage : MonoBehaviour
 
                 if (filename.StartsWith("0_"))
                 {
+                    Debug.Log("StartsWith 0");
                     int index = filename.IndexOf(".");
                     string fileNumber = filename.Substring(14, index - 14);
                     int fileNo = Convert.ToInt32(fileNumber);
