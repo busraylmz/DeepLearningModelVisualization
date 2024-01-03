@@ -69,8 +69,9 @@ public class GettingImage : MonoBehaviour
                 Debug.Log("filename:" + filename);
 
                 Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                sprite.texture.filterMode = FilterMode.Point;
 
-             
+
 
                 if (filename.StartsWith("0_"))
                 {
