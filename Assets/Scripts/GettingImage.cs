@@ -8,7 +8,7 @@ using UnityEngine;
 public class GettingImage : MonoBehaviour
 {
     // Specify the folder path where your images are located
-    public string folderPath = "Assets/feature_maps_alexnet";
+    string folderPath = System.IO.Path.Combine(Application.streamingAssetsPath, "+feature_maps_alexnet");
 
     public SortedList<int, Sprite> conv1_spriteRenderer = new SortedList<int, Sprite>();
     public SortedList<int, Sprite> maxpool1_spriteRenderer = new SortedList<int, Sprite>();
@@ -64,8 +64,11 @@ public class GettingImage : MonoBehaviour
                 Texture2D texture = new Texture2D(2, 2);
                 texture.LoadImage(fileData); // Load image data into the texture
 
+
+                int indexFileName = imagePath.IndexOf("+");
+
                 Debug.Log("imagePath:" + imagePath);
-                string filename = imagePath.Substring(28);
+                string filename = imagePath.Substring(indexFileName + 22);
                 Debug.Log("filename:" + filename);
 
                 Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
