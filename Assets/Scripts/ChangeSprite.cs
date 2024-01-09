@@ -11,9 +11,6 @@ public class ChangeSprite : MonoBehaviour
     public Image image;
     Sprite sprite;
 
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -33,15 +30,27 @@ public class ChangeSprite : MonoBehaviour
         inputName = inputName_;
         image.sprite = sprite;
 
-        foreach(GameObject go in GettingImage.instance.layers)
+        if(ModelButtonClick.layerType == "Lenet")
         {
-            go.transform.localScale = new Vector3(1f, 1f, 1f);
+            foreach (GameObject go in GettingImage.instance.LenetLayers)
+            {
+                go.transform.localScale = new Vector3(1f, 1f, 1f);
+                go.GetComponent<ActivationCheck>().go.SetActive(false);
+                go.GetComponent<ActivationCheck>().flag = false;
 
-            go.GetComponent<ActivationCheck>().go.SetActive(false);
-            go.GetComponent<ActivationCheck>().flag = false;
+            }
 
         }
+        else
+        {
+            foreach (GameObject go in GettingImage.instance.AlexnetLayers)
+            {
+                go.transform.localScale = new Vector3(1f, 1f, 1f);
+                go.GetComponent<ActivationCheck>().go.SetActive(false);
+                go.GetComponent<ActivationCheck>().flag = false;
 
+            }
 
+        }
     }
 }

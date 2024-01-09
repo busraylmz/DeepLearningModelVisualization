@@ -7,6 +7,9 @@ public class ModelButtonClick : MonoBehaviour
     public GameObject goLenetModel;
     public GameObject goAlexnetModel;
 
+
+    public static string layerType = "Lenet";
+
    // bool flag = false;
     // Start is called before the first frame update
     public void ChangeActivation()
@@ -18,11 +21,13 @@ public class ModelButtonClick : MonoBehaviour
         {
             goLenetModel.SetActive(true);
             goAlexnetModel.SetActive(false);
+            layerType = "Lenet";
         }
         else
         {
             goLenetModel.SetActive(false);
             goAlexnetModel.SetActive(true);
+            layerType = "Alexnet";
         }
 
         
