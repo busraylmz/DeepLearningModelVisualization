@@ -23,6 +23,14 @@ public class FillFeatureMapstoLayers : MonoBehaviour
     {
         Debug.Log("FillFeatureMaps");
         List<GameObject> gameObjectImageList = new List<GameObject>();
+        List<SortedList<int, Sprite>> layerImageList;
+        Debug.Log("FillFeatureMaps--------------------------"+ChangeSprite.inputName);
+
+        layerImageList = GettingImage.instance.dictList[ChangeSprite.inputName];
+
+        Debug.Log("layer:"+ layerImageList.Count);
+
+
         if (gameObject.name.Equals("Conv1Cube"))
         {
             Debug.Log("conv1");
@@ -30,13 +38,13 @@ public class FillFeatureMapstoLayers : MonoBehaviour
 
 
             Transform parentTransform = GridObjectCollection.transform;
-            foreach (int featureNo in GettingImage.instance.conv1_spriteRenderer.Keys)
-            {
+            //foreach (int featureNo in GettingImage.instance.dictList.Values)
+            //{
 
-                Debug.Log("featureNo: " + featureNo);
+            //    Debug.Log("featureNo: " + featureNo);
 
 
-            }
+            //}
             // Iterate through all children of the parent GameObject
             foreach (Transform childTransform in parentTransform)
             {
@@ -45,10 +53,10 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 gameObjectImageList.Add(childGameObject);
                 Debug.Log("Child: " + childGameObject.name);
             }
-
-            Debug.Log("gameObjectImageList.size::"+ gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList------.size::" + gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList.size::"+ layerImageList[0].Values.Count);
             int i = 0;
-            foreach(Sprite featureSprite in GettingImage.instance.conv1_spriteRenderer.Values)
+            foreach(Sprite featureSprite in layerImageList[0].Values)
             {
               //  Debug.Log("Texture name: " + featureSprite.texture.name);
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
@@ -72,9 +80,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 gameObjectImageList.Add(childGameObject);
                 Debug.Log("Child: " + childGameObject.name);
             }
-            Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList.size::" + layerImageList[1].Values.Count);
             int i = 0;
-            foreach (Sprite featureSprite in GettingImage.instance.maxpool1_spriteRenderer.Values)
+            foreach (Sprite featureSprite in layerImageList[1].Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -95,9 +103,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 gameObjectImageList.Add(childGameObject);
                 Debug.Log("Child: " + childGameObject.name);
             }
-            Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList.size::" + layerImageList[2].Values.Count);
             int i = 0;
-            foreach (Sprite featureSprite in GettingImage.instance.conv2_spriteRenderer.Values)
+            foreach (Sprite featureSprite in layerImageList[2].Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -118,9 +126,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 gameObjectImageList.Add(childGameObject);
                 Debug.Log("Child: " + childGameObject.name);
             }
-            Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList.size::" + layerImageList[3].Values.Count);
             int i = 0;
-            foreach (Sprite featureSprite in GettingImage.instance.maxpool2_spriteRenderer.Values)
+            foreach (Sprite featureSprite in layerImageList[3].Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -141,9 +149,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 gameObjectImageList.Add(childGameObject);
                 Debug.Log("Child: " + childGameObject.name);
             }
-            Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList.size::" + layerImageList[4].Values.Count);
             int i = 0;
-            foreach (Sprite featureSprite in GettingImage.instance.conv3_spriteRenderer.Values)
+            foreach (Sprite featureSprite in layerImageList[4].Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -164,9 +172,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 gameObjectImageList.Add(childGameObject);
                 Debug.Log("Child: " + childGameObject.name);
             }
-            Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList.size::" + layerImageList[5].Values.Count);
             int i = 0;
-            foreach (Sprite featureSprite in GettingImage.instance.conv4_spriteRenderer.Values)
+            foreach (Sprite featureSprite in layerImageList[5].Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -187,9 +195,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 gameObjectImageList.Add(childGameObject);
                 Debug.Log("Child: " + childGameObject.name);
             }
-            Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList.size::" + layerImageList[6].Values.Count);
             int i = 0;
-            foreach (Sprite featureSprite in GettingImage.instance.conv5_spriteRenderer.Values)
+            foreach (Sprite featureSprite in layerImageList[6].Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 
@@ -210,9 +218,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 gameObjectImageList.Add(childGameObject);
                 Debug.Log("Child: " + childGameObject.name);
             }
-            Debug.Log("gameObjectImageList.size::" + gameObjectImageList.Count);
+            Debug.Log("gameObjectImageList.size::" + layerImageList[7].Values.Count);
             int i = 0;
-            foreach (Sprite featureSprite in GettingImage.instance.maxpool3_spriteRenderer.Values)
+            foreach (Sprite featureSprite in layerImageList[7].Values)
             {
                 gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActivationCheck : MonoBehaviour
 {
     public GameObject go;
-    bool flag = false;
+   public bool flag = false;
     // Start is called before the first frame update
     public void ChangeActivation()
     {
