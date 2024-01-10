@@ -7,7 +7,7 @@ public class ChangeSprite : MonoBehaviour
 {
     public GameObject inputImage;
     public string inputName_ ;
-    public static string inputName ="cat";
+    public static string inputName ="";
     public Image image;
     Sprite sprite;
 
@@ -32,6 +32,7 @@ public class ChangeSprite : MonoBehaviour
 
         if(ModelButtonClick.layerType == "Lenet")
         {
+          //  inputName = "2";
             foreach (GameObject go in GettingImage.instance.LenetLayers)
             {
                 go.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -43,6 +44,7 @@ public class ChangeSprite : MonoBehaviour
         }
         else
         {
+          //  inputName = "cat";
             foreach (GameObject go in GettingImage.instance.AlexnetLayers)
             {
                 go.transform.localScale = new Vector3(1f, 1f, 1f);

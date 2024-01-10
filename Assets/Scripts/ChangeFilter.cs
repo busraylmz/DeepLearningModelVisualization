@@ -6,31 +6,18 @@ using UnityEngine.UI;
 
 public class ChangeFilter : MonoBehaviour
 {
-    public GameObject convFeature;
-    public Sprite featuremapSprite;
+   // public GameObject convFeature;
+   // public Sprite featuremapSprite;
     GameObject gameobjectfilter;
     public  GameObject gameobjectfilter2;
    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void playFilterAnimation()
     {
-        convFeature.transform.GetComponent<SpriteRenderer>().sprite = featuremapSprite;
+       // convFeature.transform.GetComponent<SpriteRenderer>().sprite = featuremapSprite;
        
-        FilterAnimationController.instance.GetAnimationClip_2(gameObject);
-        FilterAnimationController.instance.GetAnimationClip_3();
-        FilterAnimationController.instance.GetAnimationClip_4();
+        //FilterAnimationController.instance.GetAnimationClip_2(gameObject);
+        //FilterAnimationController.instance.GetAnimationClip_3();
+        //FilterAnimationController.instance.GetAnimationClip_4();
 
         int i = 0;
         foreach (GameObject go in FilterAnimationController.instance.textFilters)
@@ -39,7 +26,7 @@ public class ChangeFilter : MonoBehaviour
             Debug.Log("gameoject:" + gameobjectfilter.transform.parent.name);
             if (go.name == gameObject.name)
             {
-                FilterAnimationController.instance.featureMapList[i].GetComponent<Image>().color = Color.blue;
+                //FilterAnimationController.instance.featureMapList[i].GetComponent<Image>().color = Color.blue;
                 Debug.Log("==:" + gameobjectfilter.transform.parent.name);
               //  gameobjectfilter.SetActive(true);
                 gameobjectfilter2.GetComponent<TMP_Text>().text = gameobjectfilter.GetComponent<TMP_Text>().text;
@@ -47,7 +34,7 @@ public class ChangeFilter : MonoBehaviour
             }
             else
             {
-                FilterAnimationController.instance.featureMapList[i].GetComponent<Image>().color = Color.cyan;
+                //FilterAnimationController.instance.featureMapList[i].GetComponent<Image>().color = Color.cyan;
                 Debug.Log("!=:" + gameobjectfilter.transform.parent.name);
                //gameobjectfilter.SetActive(false);
             }

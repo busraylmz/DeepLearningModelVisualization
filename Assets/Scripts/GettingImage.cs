@@ -16,6 +16,12 @@ public class GettingImage : MonoBehaviour
     List<string> inputNameListAlexnet = new List<string>();
     List<string> inputNameListLenet = new List<string>();
 
+    public SortedList<int, Sprite> conv1_spriteRenderer_lenet;
+    public SortedList<int, Sprite> maxpool1_spriteRenderer_lenet;
+    public SortedList<int, Sprite> conv2_spriteRenderer_lenet;
+    public SortedList<int, Sprite> maxpool2_spriteRenderer_lenet;
+
+
     public SortedList<int, Sprite> conv1_spriteRenderer ;
     public SortedList<int, Sprite> maxpool1_spriteRenderer;
     public SortedList<int, Sprite> conv2_spriteRenderer;
@@ -81,9 +87,6 @@ public class GettingImage : MonoBehaviour
                 // Get all files (images) in the folder
                 string[] imagePaths = Directory.GetFiles(folderPath, "*.png");
 
-
-
-
                 // Load and display each image
                 foreach (string imagePath in imagePaths)
                 {
@@ -95,7 +98,7 @@ public class GettingImage : MonoBehaviour
                     int indexFileName = imagePath.IndexOf("+");
 
                     Debug.Log("imagePath:" + imagePath);
-                    string filename = imagePath.Substring(indexFileName + inputName.Length + 2);
+                    string filename = imagePath.Substring(indexFileName + inputName.Length +2);
                     Debug.Log("filename:" + filename);
 
                     Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
@@ -103,104 +106,62 @@ public class GettingImage : MonoBehaviour
 
 
 
-                    if (filename.StartsWith("0_"))
+                    if (filename.StartsWith("conv2d_f"))
                     {
                         Debug.Log("StartsWith 0");
                         int index = filename.IndexOf(".");
-                        string fileNumber = filename.Substring(14, index - 14);
+                        Debug.Log("index::" + index);
+                        string fileNumber = filename.Substring(19,index-19);
                         int fileNo = Convert.ToInt32(fileNumber);
 
 
-                        Debug.Log("Addddddddddddddddd conv1::" + filename + "  " + fileNo);
+                        Debug.Log("Addddddddddddddddd conv2d_f::" + filename + "  " + fileNo);
 
-                        conv1_spriteRenderer.Add(fileNo, sprite);
+                        conv1_spriteRenderer_lenet.Add(fileNo, sprite);
 
 
                     }
-                    else if (filename.StartsWith("2_"))
+                    else if (filename.StartsWith("conv2d_1_"))
                     {
                         int index = filename.IndexOf(".");
-                        string fileNumber = filename.Substring(14, index - 14);
+                        string fileNumber = filename.Substring(21, index - 21);
                         int fileNo = Convert.ToInt32(fileNumber);
 
-                        Debug.Log("Addddddddddddddddd maxpool1 ::" + filename + "  " + fileNo);
-                        maxpool1_spriteRenderer.Add(fileNo, sprite);
+                        Debug.Log("Addddddddddddddddd conv2d_1_ ::" + filename + "  " + fileNo);
+                        conv2_spriteRenderer_lenet.Add(fileNo, sprite);
 
                     }
-                    else if (filename.StartsWith("3_"))
+                    else if (filename.StartsWith("max_pooling2d_f"))
                     {
                         int index = filename.IndexOf(".");
-                        string fileNumber = filename.Substring(14, index - 14);
+                        string fileNumber = filename.Substring(26, index - 26);
+                        Debug.Log("filenumber:" + fileNumber + " index:" + index);
                         int fileNo = Convert.ToInt32(fileNumber);
 
-                        Debug.Log("Addddddddddddddddd conv2:: " + filename + "  " + fileNo);
-                        conv2_spriteRenderer.Add(fileNo, sprite);
+                        Debug.Log("Addddddddddddddddd max_pooling2d_f:: " + filename + "  " + fileNo);
+                        maxpool1_spriteRenderer_lenet.Add(fileNo, sprite);
 
                     }
-                    else if (filename.StartsWith("5_"))
+                    else if (filename.StartsWith("max_pooling2d_1_"))
                     {
                         int index = filename.IndexOf(".");
-                        string fileNumber = filename.Substring(14, index - 14);
+                        string fileNumber = filename.Substring(28, index - 28);
+
+                        Debug.Log("filenumber:" + fileNumber + " index:" + index);
                         int fileNo = Convert.ToInt32(fileNumber);
 
-                        Debug.Log("Addddddddddddddddd maxpool2:: " + filename + "  " + fileNo);
+                        Debug.Log("Addddddddddddddddd max_pooling2d_1_:: " + filename + "  " + fileNo);
 
-                        maxpool2_spriteRenderer.Add(fileNo, sprite);
-
-                    }
-                    else if (filename.StartsWith("6_"))
-                    {
-                        int index = filename.IndexOf(".");
-                        string fileNumber = filename.Substring(14, index - 14);
-                        int fileNo = Convert.ToInt32(fileNumber);
-
-                        Debug.Log("Addddddddddddddddd conv3:: " + filename + "  " + fileNo);
-                        conv3_spriteRenderer.Add(fileNo, sprite);
-
-                    }
-                    else if (filename.StartsWith("8_"))
-                    {
-                        int index = filename.IndexOf(".");
-                        string fileNumber = filename.Substring(14, index - 14);
-                        int fileNo = Convert.ToInt32(fileNumber);
-
-                        Debug.Log("Addddddddddddddddd conv4:: " + filename + "  " + fileNo);
-                        conv4_spriteRenderer.Add(fileNo, sprite);
-
-
-                    }
-                    else if (filename.StartsWith("10_"))
-                    {
-                        int index = filename.IndexOf(".");
-                        string fileNumber = filename.Substring(15, index - 15);
-                        int fileNo = Convert.ToInt32(fileNumber);
-
-                        Debug.Log("Addddddddddddddddd conv5:: " + filename + "  " + fileNo);
-                        conv5_spriteRenderer.Add(fileNo, sprite);
-
-
-                    }
-                    else if (filename.StartsWith("12_"))
-                    {
-                        int index = filename.IndexOf(".");
-                        string fileNumber = filename.Substring(15, index - 15);
-                        int fileNo = Convert.ToInt32(fileNumber);
-
-                        Debug.Log("Addddddddddddddddd maxpool3:: " + filename + "  " + fileNo);
-                        maxpool3_spriteRenderer.Add(fileNo, sprite);
-
+                        maxpool2_spriteRenderer_lenet.Add(fileNo, sprite);
 
                     }
 
                 }
-                listInput.Add(conv1_spriteRenderer);
-                listInput.Add(maxpool1_spriteRenderer);
-                listInput.Add(conv2_spriteRenderer);
-                listInput.Add(maxpool2_spriteRenderer);
-                listInput.Add(conv3_spriteRenderer);
-                listInput.Add(conv4_spriteRenderer);
-                listInput.Add(conv5_spriteRenderer);
-                listInput.Add(maxpool3_spriteRenderer);
+                listInput.Add(conv1_spriteRenderer_lenet);
+                listInput.Add(maxpool1_spriteRenderer_lenet);
+                listInput.Add(conv2_spriteRenderer_lenet);
+                listInput.Add(maxpool2_spriteRenderer_lenet);
+
 
                 dictList.Add(inputName, listInput);
             }
@@ -387,10 +348,19 @@ public class GettingImage : MonoBehaviour
        conv5_spriteRenderer = new SortedList<int, Sprite>();
      //   inputList.Add(conv5_spriteRenderer);
        maxpool3_spriteRenderer = new SortedList<int, Sprite>();
-    //    inputList.Add(maxpool3_spriteRenderer);
+        //    inputList.Add(maxpool3_spriteRenderer);
+        conv1_spriteRenderer_lenet = new SortedList<int, Sprite>();
+        //   inputList.Add(conv1_spriteRenderer);
+        maxpool1_spriteRenderer_lenet = new SortedList<int, Sprite>();
+        //  inputList.Add(maxpool1_spriteRenderer);
+        conv2_spriteRenderer_lenet = new SortedList<int, Sprite>();
+        //   inputList.Add(conv2_spriteRenderer);
+        maxpool2_spriteRenderer_lenet = new SortedList<int, Sprite>();
+      //  inputList.Add(maxpool2_spriteRenderer);
 
-     //   return inputList;
-    }
+
+    //   return inputList;
+}
 
 
 }
