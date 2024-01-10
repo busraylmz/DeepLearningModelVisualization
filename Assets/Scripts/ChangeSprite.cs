@@ -32,12 +32,25 @@ public class ChangeSprite : MonoBehaviour
 
         if(ModelButtonClick.layerType == "Lenet")
         {
+
+
           //  inputName = "2";
             foreach (GameObject go in GettingImage.instance.LenetLayers)
             {
-                go.transform.localScale = new Vector3(1f, 1f, 1f);
-                go.GetComponent<ActivationCheck>().go.SetActive(false);
-                go.GetComponent<ActivationCheck>().flag = false;
+                if(go.GetComponent<ActivationCheck>() != null)
+                {
+                    go.transform.localScale = new Vector3(1f, 1f, 1f);
+                    go.GetComponent<ActivationCheck>().go.SetActive(false);
+                    go.GetComponent<ActivationCheck>().flag = false;
+                }
+                else
+                {
+                    foreach(Sprite sprite in GettingImage.instance.dictList[inputName][4].Values)
+                    {
+                        go.GetComponent<SpriteRenderer>().sprite = sprite;
+
+                    }
+                }
 
             }
 

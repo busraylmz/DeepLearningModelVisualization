@@ -20,6 +20,7 @@ public class GettingImage : MonoBehaviour
     public SortedList<int, Sprite> maxpool1_spriteRenderer_lenet;
     public SortedList<int, Sprite> conv2_spriteRenderer_lenet;
     public SortedList<int, Sprite> maxpool2_spriteRenderer_lenet;
+    public SortedList<int, Sprite> denselayers_spriteRenderer_lenet;
 
 
     public SortedList<int, Sprite> conv1_spriteRenderer ;
@@ -90,6 +91,7 @@ public class GettingImage : MonoBehaviour
                 // Load and display each image
                 foreach (string imagePath in imagePaths)
                 {
+                    int denseSize = 0;
                     byte[] fileData = File.ReadAllBytes(imagePath);
                     Texture2D texture = new Texture2D(2, 2);
                     texture.LoadImage(fileData); // Load image data into the texture
@@ -111,7 +113,7 @@ public class GettingImage : MonoBehaviour
                         Debug.Log("StartsWith 0");
                         int index = filename.IndexOf(".");
                         Debug.Log("index::" + index);
-                        string fileNumber = filename.Substring(19,index-19);
+                        string fileNumber = filename.Substring(19, index - 19);
                         int fileNo = Convert.ToInt32(fileNumber);
 
 
@@ -155,12 +157,20 @@ public class GettingImage : MonoBehaviour
                         maxpool2_spriteRenderer_lenet.Add(fileNo, sprite);
 
                     }
+                    else {
+
+                        denselayers_spriteRenderer_lenet.Add(denseSize, sprite);
+                        denseSize++;
+                    }
+
+
 
                 }
                 listInput.Add(conv1_spriteRenderer_lenet);
                 listInput.Add(maxpool1_spriteRenderer_lenet);
                 listInput.Add(conv2_spriteRenderer_lenet);
                 listInput.Add(maxpool2_spriteRenderer_lenet);
+                listInput.Add(denselayers_spriteRenderer_lenet);
 
 
                 dictList.Add(inputName, listInput);
