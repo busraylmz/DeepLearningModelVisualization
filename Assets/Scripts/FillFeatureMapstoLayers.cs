@@ -6,19 +6,7 @@ using UnityEngine.UI;
 public class FillFeatureMapstoLayers : MonoBehaviour
 {
     [SerializeField] GameObject GridObjectCollection;
-    List<Sprite> spriteList = new List<Sprite>();
-
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void FillFeatureMaps()
     {
         if(ModelButtonClick.layerType == "Lenet")
@@ -146,29 +134,12 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         {
             Debug.Log("FillFeatureMaps");
             List<GameObject> gameObjectImageList = new List<GameObject>();
-            List<SortedList<int, Sprite>> layerImageList;
-            Debug.Log("FillFeatureMaps--------------------------" + ChangeSprite.inputName);
-
-            layerImageList = GettingImage.instance.dictList[ChangeSprite.inputName];
-
-            Debug.Log("layer:" + layerImageList.Count);
-
+            List<SortedList<int, Sprite>> layerImageList = GettingImage.instance.dictList[ChangeSprite.inputName];
 
             if (gameObject.name.Equals("Conv1Cube"))
             {
                 Debug.Log("conv1");
-                //spriteList = GettingImage.instance.conv1_spriteRenderer.Values;
-
-
                 Transform parentTransform = GridObjectCollection.transform;
-                //foreach (int featureNo in GettingImage.instance.dictList.Values)
-                //{
-
-                //    Debug.Log("featureNo: " + featureNo);
-
-
-                //}
-                // Iterate through all children of the parent GameObject
                 foreach (Transform childTransform in parentTransform)
                 {
                     // Access the child GameObject or do something with it
@@ -181,14 +152,11 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 int i = 0;
                 foreach (Sprite featureSprite in layerImageList[0].Values)
                 {
-                    //  Debug.Log("Texture name: " + featureSprite.texture.name);
                     gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
-
                     i++;
                 }
-
-
             }
+            
             else if (gameObject.name.Equals("MaxPool_1_Cube"))
             {
                 Debug.Log("MaxPool_1_Cube");
@@ -212,6 +180,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                     i++;
                 }
             }
+            
             else if (gameObject.name.Equals("Conv2Cube"))
             {
                 Debug.Log("conv2");
@@ -235,6 +204,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                     i++;
                 }
             }
+
             else if (gameObject.name.Equals("MaxPool_2_Cube"))
             {
                 Debug.Log("maxpool_2");
@@ -258,6 +228,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                     i++;
                 }
             }
+            
             else if (gameObject.name.Equals("Conv3Cube"))
             {
                 Debug.Log("conv3");
@@ -281,6 +252,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                     i++;
                 }
             }
+          
             else if (gameObject.name.Equals("Conv4Cube"))
             {
                 Debug.Log("conv4");
@@ -304,6 +276,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                     i++;
                 }
             }
+
             else if (gameObject.name.Equals("Conv5Cube"))
             {
                 Debug.Log("conv5");
@@ -327,6 +300,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                     i++;
                 }
             }
+
             else if (gameObject.name.Equals("MaxPool_3_Cube"))
             {
                 Debug.Log("MaxPool_3_Cube");
@@ -351,13 +325,113 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 }
             }
 
+        }
+    }
+    public void FillFilters()
+    {
+        List<GameObject> gameObjectImageList = new List<GameObject>();
+        List<SortedList<int, Sprite>> filterList = GettingImage.instance.dictFilterList;
 
-
+        if (gameObject.name.Equals("Filter_0_Cube"))
+        {
+            Debug.Log("Filter_0_Cube");
+            Transform parentTransform = GridObjectCollection.transform;
+            foreach (Transform childTransform in parentTransform)
+            {
+                GameObject childGameObject = childTransform.gameObject;
+                gameObjectImageList.Add(childGameObject);
+                Debug.Log("Filter_0 Child: " + childGameObject.name);
+            }
+            Debug.Log("Filter_0 gameObjectImageList------.size::" + gameObjectImageList.Count);
+            Debug.Log("Filter_0 gameObjectImageList.size::" + filterList[0].Values.Count);
+            int i = 0;
+            foreach (Sprite featureSprite in filterList[0].Values)
+            {
+                gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
+                i++;
+            }
         }
 
-
-
+        else if (gameObject.name.Equals("Filter_3_Cube"))
+        {
+            Debug.Log("Filter_3_Cube");
+            Transform parentTransform = GridObjectCollection.transform;
+            foreach (Transform childTransform in parentTransform)
+            {
+                GameObject childGameObject = childTransform.gameObject;
+                gameObjectImageList.Add(childGameObject);
+                Debug.Log("Filter_3 Child: " + childGameObject.name);
+            }
+            Debug.Log("Filter_3 gameObjectImageList------.size::" + gameObjectImageList.Count);
+            Debug.Log("Filter_3 gameObjectImageList.size::" + filterList[1].Values.Count);
+            int i = 0;
+            foreach (Sprite featureSprite in filterList[1].Values)
+            {
+                gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
+                i++;
+            }
+        }
         
+        else if (gameObject.name.Equals("Filter_6_Cube"))
+        {
+            Debug.Log("Filter_6_Cube");
+            Transform parentTransform = GridObjectCollection.transform;
+            foreach (Transform childTransform in parentTransform)
+            {
+                GameObject childGameObject = childTransform.gameObject;
+                gameObjectImageList.Add(childGameObject);
+                Debug.Log("Filter_6 Child: " + childGameObject.name);
+            }
+            Debug.Log("Filter_6 gameObjectImageList------.size::" + gameObjectImageList.Count);
+            Debug.Log("Filter_6 gameObjectImageList.size::" + filterList[2].Values.Count);
+            int i = 0;
+            foreach (Sprite featureSprite in filterList[2].Values)
+            {
+                gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
+                i++;
+            }
+        }
+
+        else if (gameObject.name.Equals("Filter_8_Cube"))
+        {
+            Debug.Log("Filter_6_Cube");
+            Transform parentTransform = GridObjectCollection.transform;
+            foreach (Transform childTransform in parentTransform)
+            {
+                GameObject childGameObject = childTransform.gameObject;
+                gameObjectImageList.Add(childGameObject);
+                Debug.Log("Filter_6 Child: " + childGameObject.name);
+            }
+            Debug.Log("Filter_8 gameObjectImageList------.size::" + gameObjectImageList.Count);
+            Debug.Log("Filter_8 gameObjectImageList.size::" + filterList[3].Values.Count);
+            int i = 0;
+            foreach (Sprite featureSprite in filterList[3].Values)
+            {
+                gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
+                i++;
+            }
+        }
+
+        else if (gameObject.name.Equals("Filter_10_Cube"))
+        {
+            Debug.Log("Filter_10_Cube");
+            Transform parentTransform = GridObjectCollection.transform;
+            foreach (Transform childTransform in parentTransform)
+            {
+                GameObject childGameObject = childTransform.gameObject;
+                gameObjectImageList.Add(childGameObject);
+                Debug.Log("Filter_6 Child: " + childGameObject.name);
+            }
+            Debug.Log("Filter_10 gameObjectImageList------.size::" + gameObjectImageList.Count);
+            Debug.Log("Filter_10 gameObjectImageList.size::" + filterList[4].Values.Count);
+            int i = 0;
+            foreach (Sprite featureSprite in filterList[4].Values)
+            {
+                gameObjectImageList[i].GetComponent<Image>().sprite = featureSprite;
+                i++;
+            }
+        }
 
     }
+
 }

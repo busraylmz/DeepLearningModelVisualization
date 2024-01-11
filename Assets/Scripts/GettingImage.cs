@@ -32,11 +32,19 @@ public class GettingImage : MonoBehaviour
     public SortedList<int, Sprite> conv5_spriteRenderer;
     public SortedList<int, Sprite> maxpool3_spriteRenderer ;
 
+    private SortedList<int, Sprite> filter_0_spriteRenderer;
+    private SortedList<int, Sprite> filter_3_spriteRenderer;
+    private SortedList<int, Sprite> filter_6_spriteRenderer;
+    private SortedList<int, Sprite> filter_8_spriteRenderer;
+    private SortedList<int, Sprite> filter_10_spriteRenderer;
+
 
     public Dictionary<string, List<SortedList<int, Sprite>>> dictList = new Dictionary<string, List<SortedList<int, Sprite>>>();
+    public List<SortedList<int, Sprite>> dictFilterList = new List<SortedList<int, Sprite>>();
 
 
     public static GettingImage instance = null;
+
 
     private void Awake()
     {
@@ -68,12 +76,13 @@ public class GettingImage : MonoBehaviour
         inputNameListLenet.Add("8");
         inputNameListLenet.Add("9");
 
-        GetFiles();
+        GetLayersFiles();
+        GetFiltersFiles();
     }
 
 
 
-    private void GetFiles()
+    private void GetLayersFiles()
     {
         foreach (string inputName in inputNameListLenet)
         {
@@ -87,11 +96,11 @@ public class GettingImage : MonoBehaviour
                 Debug.Log("folder exist");
                 // Get all files (images) in the folder
                 string[] imagePaths = Directory.GetFiles(folderPath, "*.png");
-
+                int denseSize = 0;
                 // Load and display each image
                 foreach (string imagePath in imagePaths)
                 {
-                    int denseSize = 0;
+                    
                     byte[] fileData = File.ReadAllBytes(imagePath);
                     Texture2D texture = new Texture2D(2, 2);
                     texture.LoadImage(fileData); // Load image data into the texture
@@ -160,6 +169,7 @@ public class GettingImage : MonoBehaviour
                     else {
 
                         denselayers_spriteRenderer_lenet.Add(denseSize, sprite);
+                        Debug.Log("-------------DENSE::::" + filename+" dense size:"+denseSize);
                         denseSize++;
                     }
 
@@ -186,7 +196,6 @@ public class GettingImage : MonoBehaviour
         {
 
             List<SortedList<int, Sprite>> listInput = new List<SortedList<int, Sprite>>();
-           // bool inputList = CreateInputDict(inputName).TryGetValue(inputName, out listInput);
 
             string folderPath = System.IO.Path.Combine(Application.streamingAssetsPath, "feature_maps_alexnet","+"+inputName);
             // Check if the folder exists
@@ -197,17 +206,12 @@ public class GettingImage : MonoBehaviour
                 // Get all files (images) in the folder
                 string[] imagePaths = Directory.GetFiles(folderPath, "*.png");
 
-
-
-
                 // Load and display each image
                 foreach (string imagePath in imagePaths)
                 {
                     byte[] fileData = File.ReadAllBytes(imagePath);
                     Texture2D texture = new Texture2D(2, 2);
                     texture.LoadImage(fileData); // Load image data into the texture
-
-
                     int indexFileName = imagePath.IndexOf("+");
 
                     Debug.Log("imagePath:" + imagePath);
@@ -328,49 +332,137 @@ public class GettingImage : MonoBehaviour
 
     }
 
+    private void GetFiltersFiles()
+    {
+          string folderPath = System.IO.Path.Combine(Application.streamingAssetsPath, "feature_maps_alexnet", "filter_visualizations_alexnet-");
+            // Check if the folder exists
+            if (Directory.Exists(folderPath))
+            {
+               CreateFilterList();
+                Debug.Log("folder exist");
+                // Get all files (images) in the folder
+                string[] imagePaths = Directory.GetFiles(folderPath, "*.png");
+                // Load and display each image
+                foreach (string imagePath in imagePaths)
+                {
+                    
+                    byte[] fileData = File.ReadAllBytes(imagePath);
+                    Texture2D texture = new Texture2D(2, 2);
+                    texture.LoadImage(fileData); // Load image data into the texture
+                
+                    Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                    sprite.texture.filterMode = FilterMode.Point;
 
 
-    //public Dictionary<string, List<SortedList<int, Sprite>>> CreateInputDict(string inputName, List<SortedList<int, Sprite>> listInput)
-    //{
-    //     Dictionary<string, List<SortedList<int, Sprite>>> inputList = new Dictionary<string, List<SortedList<int, Sprite>>>();
-    //     inputList.Add(inputName, listInput);
+                    int indexFileName = imagePath.IndexOf("-");
 
-    //     return inputList;
-
-    //}
+                    Debug.Log("imagePath:" + imagePath);
+                    string filename = imagePath.Substring(indexFileName+2);
+                    Debug.Log("filename:" + filename);
 
 
+                if (filename.StartsWith("0_"))
+                    {
+                        Debug.Log("StartsWith 0");
+                        int index = filename.IndexOf(".");
+                        Debug.Log("index::" + index);
+                        string fileNumber = filename.Substring(9, index - 9);
+                        int fileNo = Convert.ToInt32(fileNumber);
+
+
+                        Debug.Log("Addddddddddddddddd 0_::" + filename + "  " + fileNo);
+
+                        filter_0_spriteRenderer.Add(fileNo, sprite);
+
+
+                    }
+                    else if (filename.StartsWith("3_"))
+                    {
+                        Debug.Log("StartsWith 3");
+                        int index = filename.IndexOf(".");
+                        Debug.Log("index::" + index);
+                        string fileNumber = filename.Substring(9, index - 9);
+                        int fileNo = Convert.ToInt32(fileNumber);
+
+
+                        Debug.Log("Addddddddddddddddd 3_::" + filename + "  " + fileNo);
+
+                        filter_3_spriteRenderer.Add(fileNo, sprite);
+
+                    }
+                    else if (filename.StartsWith("6_"))
+                    {
+                        Debug.Log("StartsWith 3");
+                        int index = filename.IndexOf(".");
+                        Debug.Log("index::" + index);
+                        string fileNumber = filename.Substring(9, index - 9);
+                        int fileNo = Convert.ToInt32(fileNumber);
+
+
+                        Debug.Log("Addddddddddddddddd 6_::" + filename + "  " + fileNo);
+
+                        filter_6_spriteRenderer.Add(fileNo, sprite);
+                    }
+                    else if (filename.StartsWith("8_"))
+                    {
+                        Debug.Log("StartsWith 8");
+                        int index = filename.IndexOf(".");
+                        Debug.Log("index::" + index);
+                        string fileNumber = filename.Substring(9, index - 9);
+                        int fileNo = Convert.ToInt32(fileNumber);
+
+
+                        Debug.Log("Addddddddddddddddd 8_::" + filename + "  " + fileNo);
+
+                        filter_8_spriteRenderer.Add(fileNo, sprite);
+
+                    }
+                    else if (filename.StartsWith("10_"))
+                    {
+                        Debug.Log("StartsWith 10");
+                        int index = filename.IndexOf(".");
+                        Debug.Log("index::" + index);
+                        string fileNumber = filename.Substring(10, index - 10);
+                        int fileNo = Convert.ToInt32(fileNumber);
+
+
+                        Debug.Log("Addddddddddddddddd 10_::" + filename + "  " + fileNo);
+
+                        filter_10_spriteRenderer.Add(fileNo, sprite);
+
+                    }
+                }
+                dictFilterList.Add(filter_0_spriteRenderer);
+                dictFilterList.Add(filter_3_spriteRenderer);
+                dictFilterList.Add(filter_6_spriteRenderer);
+                dictFilterList.Add(filter_8_spriteRenderer);
+                dictFilterList.Add(filter_10_spriteRenderer);
+            }
+    }
     public void CreateLayerList()
     {
-       List<SortedList<int, Sprite>> inputList = new List<SortedList<int, Sprite>>();
        conv1_spriteRenderer = new SortedList<int, Sprite>();
-     //   inputList.Add(conv1_spriteRenderer);
-        maxpool1_spriteRenderer = new SortedList<int, Sprite>();
-      //  inputList.Add(maxpool1_spriteRenderer);
-      conv2_spriteRenderer = new SortedList<int, Sprite>();
-     //   inputList.Add(conv2_spriteRenderer);
-      maxpool2_spriteRenderer = new SortedList<int, Sprite>();
-      //  inputList.Add(maxpool2_spriteRenderer);
+       maxpool1_spriteRenderer = new SortedList<int, Sprite>();
+       conv2_spriteRenderer = new SortedList<int, Sprite>();
+       maxpool2_spriteRenderer = new SortedList<int, Sprite>();
        conv3_spriteRenderer = new SortedList<int, Sprite>();
-      //  inputList.Add(conv3_spriteRenderer);
        conv4_spriteRenderer = new SortedList<int, Sprite>();
-      //  inputList.Add(conv4_spriteRenderer);
        conv5_spriteRenderer = new SortedList<int, Sprite>();
-     //   inputList.Add(conv5_spriteRenderer);
        maxpool3_spriteRenderer = new SortedList<int, Sprite>();
-        //    inputList.Add(maxpool3_spriteRenderer);
-        conv1_spriteRenderer_lenet = new SortedList<int, Sprite>();
-        //   inputList.Add(conv1_spriteRenderer);
-        maxpool1_spriteRenderer_lenet = new SortedList<int, Sprite>();
-        //  inputList.Add(maxpool1_spriteRenderer);
-        conv2_spriteRenderer_lenet = new SortedList<int, Sprite>();
-        //   inputList.Add(conv2_spriteRenderer);
-        maxpool2_spriteRenderer_lenet = new SortedList<int, Sprite>();
-      //  inputList.Add(maxpool2_spriteRenderer);
 
+       conv1_spriteRenderer_lenet = new SortedList<int, Sprite>();
+       maxpool1_spriteRenderer_lenet = new SortedList<int, Sprite>();
+       conv2_spriteRenderer_lenet = new SortedList<int, Sprite>();
+       maxpool2_spriteRenderer_lenet = new SortedList<int, Sprite>();
+       denselayers_spriteRenderer_lenet = new SortedList<int, Sprite>();
+    }
 
-    //   return inputList;
-}
-
-
+    public void CreateFilterList()
+    {
+        filter_0_spriteRenderer = new SortedList<int, Sprite>();
+        filter_3_spriteRenderer = new SortedList<int, Sprite>();
+        filter_6_spriteRenderer = new SortedList<int, Sprite>();
+        filter_8_spriteRenderer = new SortedList<int, Sprite>();
+        filter_10_spriteRenderer = new SortedList<int, Sprite>();
+    }
 }

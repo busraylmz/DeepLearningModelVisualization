@@ -1,21 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ModelButtonClick : MonoBehaviour
 {
-    public GameObject goLenetModel;
-    public GameObject goAlexnetModel;
-
-
     public static string layerType = "Lenet";
 
-   // bool flag = false;
-    // Start is called before the first frame update
+    public GameObject goLenetModel;
+    public GameObject goAlexnetModel;
     public void ChangeActivation()
     {
         Debug.Log("ChangeActivation()" + gameObject.name);
-        //flag = !flag;
 
         if (gameObject.name.Contains("Lenet"))
         {
@@ -29,8 +23,5 @@ public class ModelButtonClick : MonoBehaviour
             goAlexnetModel.SetActive(true);
             layerType = "Alexnet";
         }
-
-        
-      
     }
 }
