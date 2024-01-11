@@ -1721,6 +1721,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 869845453}
     m_Modifications:
+    - target: {fileID: 1369803337430531328, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.8999977
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569448839493406567, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860510740325687226, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_text
+      value: 'Egyptian cat 0.45
+
+
+        Kit fox 0.17
+
+
+        Chihuahua 0.12
+
+
+
+
+
+
+        toilet
+        tissue: 0.00
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860510740325687226, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_fontSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860510740325687226, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_margin.w
+      value: -0.22464061
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860510740325687226, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_margin.z
+      value: 9.849473
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860510740325687226, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6436150455184221632, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1785,6 +1829,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 6436150455489819254, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6436150455778084071, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
       propertyPath: lenetLayers
       value: 
@@ -1800,6 +1848,26 @@ PrefabInstance:
     - target: {fileID: 6436150456365010203, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7013694683825502649, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.8999977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457373316896322504, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.8999977
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006377555156862634, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.8999977
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050343474934019084, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050343474934019084, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.049
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5310db53c17cfb342858a73fb38d2d7b, type: 3}
