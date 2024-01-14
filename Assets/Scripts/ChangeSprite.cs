@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,15 @@ public class ChangeSprite : MonoBehaviour
     public static string inputName ="";
     public Image image;
     Sprite sprite;
+    [SerializeField]
+    private TextMeshPro textMesh;
+    [SerializeField]
+    private TextMeshPro textMeshOutputCat;
+    [SerializeField]
+    private TextMeshPro textMeshOutputDog;
+    [SerializeField]
+    private TextMeshPro textMeshOutputShip;
+
 
     public GameObject lenetLayers;
     public GameObject alexnetLayers;
@@ -32,8 +42,10 @@ public class ChangeSprite : MonoBehaviour
         inputImage.GetComponent<SpriteRenderer>().sprite = sprite;
         inputName = inputName_;
         image.sprite = sprite;
+        textMesh.gameObject.SetActive(false);
 
-        if(ModelButtonClick.layerType == "Lenet")
+
+        if (ModelButtonClick.layerType == "Lenet")
         {
 
             lenetLayers.SetActive(true);
@@ -58,7 +70,25 @@ public class ChangeSprite : MonoBehaviour
         else
         {
             alexnetLayers.SetActive(true);
-          //  inputName = "cat";
+            if(gameObject.name == "cat")
+            {
+                textMeshOutputDog.gameObject.SetActive(false);
+                textMeshOutputShip.gameObject.SetActive(false);
+                textMeshOutputCat.gameObject.SetActive(true);
+            }
+            else if (gameObject.name == "dog")
+            {
+                textMeshOutputDog.gameObject.SetActive(true);
+                textMeshOutputShip.gameObject.SetActive(false);
+                textMeshOutputCat.gameObject.SetActive(false);
+            }
+            else
+            {
+                textMeshOutputDog.gameObject.SetActive(false);
+                textMeshOutputShip.gameObject.SetActive(true);
+                textMeshOutputCat.gameObject.SetActive(false);
+            }
+            //  inputName = "cat";
             foreach (GameObject go in GettingImage.instance.AlexnetLayers)
             {
                 go.transform.localScale = new Vector3(1f, 1f, 1f);
