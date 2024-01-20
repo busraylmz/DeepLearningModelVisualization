@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -145,6 +146,8 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                     // Access the child GameObject or do something with it
                     GameObject childGameObject = childTransform.gameObject;
                     gameObjectImageList.Add(childGameObject);
+                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv1",gameObject, childGameObject));
+
                     Debug.Log("Child: " + childGameObject.name);
                 }
                 Debug.Log("gameObjectImageList------.size::" + gameObjectImageList.Count);
@@ -169,6 +172,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                     // Access the child GameObject or do something with it
                     GameObject childGameObject = childTransform.gameObject;
                     gameObjectImageList.Add(childGameObject);
+                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool1", gameObject, childGameObject));
                     Debug.Log("Child: " + childGameObject.name);
                 }
                 Debug.Log("gameObjectImageList.size::" + layerImageList[1].Values.Count);
@@ -192,7 +196,9 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 {
                     // Access the child GameObject or do something with it
                     GameObject childGameObject = childTransform.gameObject;
+                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv2", gameObject, childGameObject));
                     gameObjectImageList.Add(childGameObject);
+
                     Debug.Log("Child: " + childGameObject.name);
                 }
                 Debug.Log("gameObjectImageList.size::" + layerImageList[2].Values.Count);
@@ -216,6 +222,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 {
                     // Access the child GameObject or do something with it
                     GameObject childGameObject = childTransform.gameObject;
+                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool2", gameObject, childGameObject));
                     gameObjectImageList.Add(childGameObject);
                     Debug.Log("Child: " + childGameObject.name);
                 }
@@ -240,6 +247,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 {
                     // Access the child GameObject or do something with it
                     GameObject childGameObject = childTransform.gameObject;
+                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv3", gameObject, childGameObject));
                     gameObjectImageList.Add(childGameObject);
                     Debug.Log("Child: " + childGameObject.name);
                 }
@@ -264,6 +272,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 {
                     // Access the child GameObject or do something with it
                     GameObject childGameObject = childTransform.gameObject;
+                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv4", gameObject, childGameObject));
                     gameObjectImageList.Add(childGameObject);
                     Debug.Log("Child: " + childGameObject.name);
                 }
@@ -288,6 +297,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 {
                     // Access the child GameObject or do something with it
                     GameObject childGameObject = childTransform.gameObject;
+                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv5", gameObject, childGameObject));
                     gameObjectImageList.Add(childGameObject);
                     Debug.Log("Child: " + childGameObject.name);
                 }
@@ -312,6 +322,7 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 {
                     // Access the child GameObject or do something with it
                     GameObject childGameObject = childTransform.gameObject;
+                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool3", gameObject, childGameObject));
                     gameObjectImageList.Add(childGameObject);
                     Debug.Log("Child: " + childGameObject.name);
                 }
@@ -434,4 +445,13 @@ public class FillFeatureMapstoLayers : MonoBehaviour
 
     }
 
+
+    //public void ChangeImagePosition()
+    //{
+
+    //    BringtoFrontandBack bringtoFrontandBack = new BringtoFrontandBack();
+    //    bringtoFrontandBack.ChangeImagePosition();
+
+
+    //}
 }
