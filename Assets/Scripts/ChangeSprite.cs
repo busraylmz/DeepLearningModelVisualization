@@ -21,6 +21,9 @@ public class ChangeSprite : MonoBehaviour
     private TextMeshPro textMeshOutputShip;
 
 
+    [SerializeField]
+    private GameObject canvas;
+
     public GameObject lenetLayers;
     public GameObject alexnetLayers;
 
@@ -94,9 +97,39 @@ public class ChangeSprite : MonoBehaviour
                 go.transform.localScale = new Vector3(1f, 1f, 1f);
                 go.GetComponent<ActivationCheck>().go.SetActive(false);
                 go.GetComponent<ActivationCheck>().flag = false;
-
             }
 
+            Transform parentTransform = canvas.transform;
+
+            // Get all child transforms recursively
+            BringtoFrontandBack[] allChildren = parentTransform.GetComponentsInChildren<BringtoFrontandBack>(true);
+
+            // Exclude the parent transform itself
+            foreach (BringtoFrontandBack image in allChildren)
+            {
+                if (image != parentTransform)
+                {
+                    // Do something with each child
+                    image.BackOldPosition();
+                    Debug.Log("Change sprite:::. Child: " + image.name);
+                }
+            }
+
+
+
+            //Transform parentTransform = canvas.transform;
+            //if (parentTransform.childCount != 0)
+            //{
+
+               
+            //    foreach (Transform image in parentTransform)
+            //    {
+            //        // Access the child GameObject or do something with it
+            //        image.gameObject.gameObject.GetComponent<BringtoFrontandBack>().BackOldPosition();
+            //        Debug.Log("Child: " + image.name);
+            //        Debug.Log("Change sprite:::. Child: " + image.name);
+            //    }
+            //}
         }
     }
 }

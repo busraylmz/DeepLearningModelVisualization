@@ -1,3 +1,5 @@
+using Microsoft.MixedReality.Toolkit.UI;
+using Microsoft.MixedReality.Toolkit.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,29 +12,49 @@ public class BringtoFrontandBack : MonoBehaviour
     private Quaternion imageRotation;
     private Vector3 scale;
 
+
+    private GameObject ownParentCanvas;
+
+    [SerializeField]
+    private GameObject parentCanvas;
+
+    [SerializeField]
+    private GameObject closePanel;
+
+    BoundingBox boundingBox;
+    ObjectManipulator objectManipulator;
+    RotationAxisConstraint rotationAxisConstraint;
+    ConstraintManager constraintManager;
+
     bool flag = false; 
 
     // Start is called before the first frame update
     void Start()
     {
-        imagePosition = gameObject.transform.localPosition;
-        imageRotation = gameObject.transform.localRotation;
+        imagePosition = gameObject.transform.position;
+        imageRotation = gameObject.transform.rotation;
         scale = gameObject.transform.localScale;
+
+        ownParentCanvas = gameObject.transform.parent.transform.gameObject;
+
+        boundingBox = gameObject.GetComponent<BoundingBox>();
+        objectManipulator = gameObject.GetComponent<ObjectManipulator>();
+        rotationAxisConstraint = gameObject.AddComponent<RotationAxisConstraint>();
+      
+       // constraintManager = gameObject.AddComponent<ConstraintManager>();
+
         Debug.Log("IMAGE LOCAL POSITION:::" + imagePosition);
         Debug.Log("IMAGE LOCAL POSITION:::" + gameObject.transform.position);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-    }
 
-    public void ChangeImagePosition(string layerType,GameObject go,GameObject childGameObject)
+    public void ChangeImagePosition(GameObject go)
     {
-        flag = !flag;
+        //flag = !flag;
 
-        if (flag)
-        {
+        //if (flag)
+        //{
             Debug.Log("IMAGE LOCAL POSITION flag 1:::" + flag);
             Debug.Log("head position:" + InputDataExampleGizmo.HeadPosition);
             Debug.Log("IMAGE LOCAL POSITION  1111:::" + imagePosition);
@@ -75,28 +97,72 @@ public class BringtoFrontandBack : MonoBehaviour
                 Vector3 midpoint = (Camera.main.transform.position + go.transform.position) / 2f;
             gameObject.transform.position = new Vector3(midpoint.x, midpoint.y + 0.1f, midpoint.z);
             gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-            //  gameObject.transform.localRotation=InputDataExampleGizmo.gameObjectHead.transform.rotation;
-            gameObject.transform.LookAt(Camera.main.transform);
+        // gameObject.transform.localRotation=InputDataExampleGizmo.gameObjectHead.transform.rotation;
+
+
+
+      
+
+         gameObject.transform.LookAt(Camera.main.transform);
+
+        Quaternion quaternion = gameObject.transform.rotation;
+        gameObject.transform.rotation = Quaternion.Euler(new Vector3(quaternion.eulerAngles.x * -1f, quaternion.eulerAngles.y + 180f, quaternion.eulerAngles.z));
+
+
+
+           // new Quaternion(quaternion.eulerAngles.x * -1f, quaternion.eulerAngles.y+180f, quaternion.eulerAngles.z, )
+
+       gameObject.transform.parent = parentCanvas.transform;
             Debug.Log("IMAGE LOCAL POSITION 222222:::" + gameObject.transform.position);
 
-        }
-        else
-        {
 
-            RectTransform rt = childGameObject.GetComponent<RectTransform>();
+            boundingBox.enabled = true;
+            objectManipulator.enabled = true;
 
-            if (rt != null)
-            {
-                Debug.Log("ORDEEEEEEEERRRRRRRRRRR 0000000000000000");
-                // Set the new sibling index
-                rt.SetSiblingIndex(0);
-            }
-            Debug.Log("IMAGE LOCAL POSITION flag 2:::" + flag);
-            gameObject.transform.localPosition = imagePosition;
-            gameObject.transform.localRotation = imageRotation;
-            gameObject.transform.localScale = scale;
+            boundingBox.Target = gameObject;
+            boundingBox.BoundsOverride= gameObject.GetComponent<BoxCollider>();
 
-        }
+            rotationAxisConstraint.HandType = ManipulationHandFlags.OneHanded & ManipulationHandFlags.TwoHanded;
+            rotationAxisConstraint.ConstraintOnRotation = AxisFlags.XAxis & AxisFlags.ZAxis;
+
+        gameObject.GetComponent<Interactable>().enabled = false;
+            
+            closePanel.SetActive(true);
+
+        //}
+        //else
+        //{
+
+        //    closePanel.SetActive(false);
+        //    boundingBox.enabled = false;
+        //    objectManipulator.enabled = false;
+        //    Debug.Log("IMAGE LOCAL POSITION flag 2:::" + flag);
+        //    gameObject.transform.position = imagePosition;
+        //    gameObject.transform.rotation = imageRotation;
+        //    gameObject.transform.localScale = scale;
+
+        //    gameObject.transform.parent = ownParentCanvas.transform;
+
+        //}
 
     }
+
+
+    public void BackOldPosition()
+    {
+        //flag = false;
+
+        boundingBox.enabled = false;
+        objectManipulator.enabled = false;
+
+        Debug.Log("IMAGE LOCAL POSITION flag 2:::" + flag);
+        gameObject.transform.position = imagePosition;
+        gameObject.transform.rotation = imageRotation;
+        gameObject.transform.localScale = scale;
+
+        gameObject.transform.parent = ownParentCanvas.transform;
+        closePanel.SetActive(false);
+        gameObject.GetComponent<Interactable>().enabled = true;
+    }
+
 }

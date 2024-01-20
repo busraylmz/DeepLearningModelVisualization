@@ -7,6 +7,22 @@ using UnityEngine.UI;
 public class FillFeatureMapstoLayers : MonoBehaviour
 {
     [SerializeField] GameObject GridObjectCollection;
+    List<GameObject> gameObjectImageList = new List<GameObject>();
+
+    private void Start()
+    {
+        Transform parentTransform = GridObjectCollection.transform;
+        foreach (Transform childTransform in parentTransform)
+        {
+            // Access the child GameObject or do something with it
+            GameObject childGameObject = childTransform.gameObject;
+            gameObjectImageList.Add(childGameObject);
+            childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition(gameObject));
+
+            Debug.Log("Child: " + childGameObject.name);
+        }
+    }
+
     // Start is called before the first frame update
     public void FillFeatureMaps()
     {
@@ -134,22 +150,22 @@ public class FillFeatureMapstoLayers : MonoBehaviour
         else
         {
             Debug.Log("FillFeatureMaps");
-            List<GameObject> gameObjectImageList = new List<GameObject>();
+            //List<GameObject> gameObjectImageList = new List<GameObject>();
             List<SortedList<int, Sprite>> layerImageList = GettingImage.instance.dictList[ChangeSprite.inputName];
 
             if (gameObject.name.Equals("Conv1Cube"))
             {
                 Debug.Log("conv1");
-                Transform parentTransform = GridObjectCollection.transform;
-                foreach (Transform childTransform in parentTransform)
-                {
-                    // Access the child GameObject or do something with it
-                    GameObject childGameObject = childTransform.gameObject;
-                    gameObjectImageList.Add(childGameObject);
-                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv1",gameObject, childGameObject));
+                //Transform parentTransform = GridObjectCollection.transform;
+                //foreach (Transform childTransform in parentTransform)
+                //{
+                //    // Access the child GameObject or do something with it
+                //    GameObject childGameObject = childTransform.gameObject;
+                //    gameObjectImageList.Add(childGameObject);
+                //    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv1",gameObject, childGameObject));
 
-                    Debug.Log("Child: " + childGameObject.name);
-                }
+                //    Debug.Log("Child: " + childGameObject.name);
+                //}
                 Debug.Log("gameObjectImageList------.size::" + gameObjectImageList.Count);
                 Debug.Log("gameObjectImageList.size::" + layerImageList[0].Values.Count);
                 int i = 0;
@@ -165,16 +181,16 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 Debug.Log("MaxPool_1_Cube");
                 //   spriteList = GettingImage.instance.maxpool1_spriteRenderer;
 
-                Transform parentTransform = GridObjectCollection.transform;
+                //Transform parentTransform = GridObjectCollection.transform;
                 // Iterate through all children of the parent GameObject
-                foreach (Transform childTransform in parentTransform)
-                {
-                    // Access the child GameObject or do something with it
-                    GameObject childGameObject = childTransform.gameObject;
-                    gameObjectImageList.Add(childGameObject);
-                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool1", gameObject, childGameObject));
-                    Debug.Log("Child: " + childGameObject.name);
-                }
+                //foreach (Transform childTransform in parentTransform)
+                //{
+                //    // Access the child GameObject or do something with it
+                //    GameObject childGameObject = childTransform.gameObject;
+                //    gameObjectImageList.Add(childGameObject);
+                //    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool1", gameObject, childGameObject));
+                //    Debug.Log("Child: " + childGameObject.name);
+                //}
                 Debug.Log("gameObjectImageList.size::" + layerImageList[1].Values.Count);
                 int i = 0;
                 foreach (Sprite featureSprite in layerImageList[1].Values)
@@ -190,17 +206,17 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 Debug.Log("conv2");
                 //   spriteList = GettingImage.instance.conv2_spriteRenderer;
 
-                Transform parentTransform = GridObjectCollection.transform;
-                // Iterate through all children of the parent GameObject
-                foreach (Transform childTransform in parentTransform)
-                {
-                    // Access the child GameObject or do something with it
-                    GameObject childGameObject = childTransform.gameObject;
-                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv2", gameObject, childGameObject));
-                    gameObjectImageList.Add(childGameObject);
+                //Transform parentTransform = GridObjectCollection.transform;
+                //// Iterate through all children of the parent GameObject
+                //foreach (Transform childTransform in parentTransform)
+                //{
+                //    // Access the child GameObject or do something with it
+                //    GameObject childGameObject = childTransform.gameObject;
+                //    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv2", gameObject, childGameObject));
+                //    gameObjectImageList.Add(childGameObject);
 
-                    Debug.Log("Child: " + childGameObject.name);
-                }
+                //    Debug.Log("Child: " + childGameObject.name);
+                //}
                 Debug.Log("gameObjectImageList.size::" + layerImageList[2].Values.Count);
                 int i = 0;
                 foreach (Sprite featureSprite in layerImageList[2].Values)
@@ -216,16 +232,16 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 Debug.Log("maxpool_2");
                 //  spriteList = GettingImage.instance.maxpool2_spriteRenderer;
 
-                Transform parentTransform = GridObjectCollection.transform;
-                // Iterate through all children of the parent GameObject
-                foreach (Transform childTransform in parentTransform)
-                {
-                    // Access the child GameObject or do something with it
-                    GameObject childGameObject = childTransform.gameObject;
-                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool2", gameObject, childGameObject));
-                    gameObjectImageList.Add(childGameObject);
-                    Debug.Log("Child: " + childGameObject.name);
-                }
+                //Transform parentTransform = GridObjectCollection.transform;
+                //// Iterate through all children of the parent GameObject
+                //foreach (Transform childTransform in parentTransform)
+                //{
+                //    // Access the child GameObject or do something with it
+                //    GameObject childGameObject = childTransform.gameObject;
+                //    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool2", gameObject, childGameObject));
+                //    gameObjectImageList.Add(childGameObject);
+                //    Debug.Log("Child: " + childGameObject.name);
+                //}
                 Debug.Log("gameObjectImageList.size::" + layerImageList[3].Values.Count);
                 int i = 0;
                 foreach (Sprite featureSprite in layerImageList[3].Values)
@@ -241,16 +257,16 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 Debug.Log("conv3");
                 //spriteList = GettingImage.instance.conv3_spriteRenderer;
 
-                Transform parentTransform = GridObjectCollection.transform;
-                // Iterate through all children of the parent GameObject
-                foreach (Transform childTransform in parentTransform)
-                {
-                    // Access the child GameObject or do something with it
-                    GameObject childGameObject = childTransform.gameObject;
-                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv3", gameObject, childGameObject));
-                    gameObjectImageList.Add(childGameObject);
-                    Debug.Log("Child: " + childGameObject.name);
-                }
+                //Transform parentTransform = GridObjectCollection.transform;
+                //// Iterate through all children of the parent GameObject
+                //foreach (Transform childTransform in parentTransform)
+                //{
+                //    // Access the child GameObject or do something with it
+                //    GameObject childGameObject = childTransform.gameObject;
+                //    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv3", gameObject, childGameObject));
+                //    gameObjectImageList.Add(childGameObject);
+                //    Debug.Log("Child: " + childGameObject.name);
+                //}
                 Debug.Log("gameObjectImageList.size::" + layerImageList[4].Values.Count);
                 int i = 0;
                 foreach (Sprite featureSprite in layerImageList[4].Values)
@@ -266,16 +282,16 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 Debug.Log("conv4");
                 // spriteList = GettingImage.instance.conv4_spriteRenderer;
 
-                Transform parentTransform = GridObjectCollection.transform;
-                // Iterate through all children of the parent GameObject
-                foreach (Transform childTransform in parentTransform)
-                {
-                    // Access the child GameObject or do something with it
-                    GameObject childGameObject = childTransform.gameObject;
-                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv4", gameObject, childGameObject));
-                    gameObjectImageList.Add(childGameObject);
-                    Debug.Log("Child: " + childGameObject.name);
-                }
+                //Transform parentTransform = GridObjectCollection.transform;
+                //// Iterate through all children of the parent GameObject
+                //foreach (Transform childTransform in parentTransform)
+                //{
+                //    // Access the child GameObject or do something with it
+                //    GameObject childGameObject = childTransform.gameObject;
+                //    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv4", gameObject, childGameObject));
+                //    gameObjectImageList.Add(childGameObject);
+                //    Debug.Log("Child: " + childGameObject.name);
+                //}
                 Debug.Log("gameObjectImageList.size::" + layerImageList[5].Values.Count);
                 int i = 0;
                 foreach (Sprite featureSprite in layerImageList[5].Values)
@@ -291,16 +307,16 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 Debug.Log("conv5");
                 //spriteList = GettingImage.instance.conv5_spriteRenderer;
 
-                Transform parentTransform = GridObjectCollection.transform;
-                // Iterate through all children of the parent GameObject
-                foreach (Transform childTransform in parentTransform)
-                {
-                    // Access the child GameObject or do something with it
-                    GameObject childGameObject = childTransform.gameObject;
-                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv5", gameObject, childGameObject));
-                    gameObjectImageList.Add(childGameObject);
-                    Debug.Log("Child: " + childGameObject.name);
-                }
+                //Transform parentTransform = GridObjectCollection.transform;
+                //// Iterate through all children of the parent GameObject
+                //foreach (Transform childTransform in parentTransform)
+                //{
+                //    // Access the child GameObject or do something with it
+                //    GameObject childGameObject = childTransform.gameObject;
+                //    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("conv5", gameObject, childGameObject));
+                //    gameObjectImageList.Add(childGameObject);
+                //    Debug.Log("Child: " + childGameObject.name);
+                //}
                 Debug.Log("gameObjectImageList.size::" + layerImageList[6].Values.Count);
                 int i = 0;
                 foreach (Sprite featureSprite in layerImageList[6].Values)
@@ -316,16 +332,16 @@ public class FillFeatureMapstoLayers : MonoBehaviour
                 Debug.Log("MaxPool_3_Cube");
                 // spriteList = GettingImage.instance.maxpool3_spriteRenderer;
 
-                Transform parentTransform = GridObjectCollection.transform;
-                // Iterate through all children of the parent GameObject
-                foreach (Transform childTransform in parentTransform)
-                {
-                    // Access the child GameObject or do something with it
-                    GameObject childGameObject = childTransform.gameObject;
-                    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool3", gameObject, childGameObject));
-                    gameObjectImageList.Add(childGameObject);
-                    Debug.Log("Child: " + childGameObject.name);
-                }
+                //Transform parentTransform = GridObjectCollection.transform;
+                //// Iterate through all children of the parent GameObject
+                //foreach (Transform childTransform in parentTransform)
+                //{
+                //    // Access the child GameObject or do something with it
+                //    GameObject childGameObject = childTransform.gameObject;
+                //    childGameObject.gameObject.GetComponent<Interactable>().OnClick.AddListener(() => childGameObject.gameObject.GetComponent<BringtoFrontandBack>().ChangeImagePosition("maxpool3", gameObject, childGameObject));
+                //    gameObjectImageList.Add(childGameObject);
+                //    Debug.Log("Child: " + childGameObject.name);
+                //}
                 Debug.Log("gameObjectImageList.size::" + layerImageList[7].Values.Count);
                 int i = 0;
                 foreach (Sprite featureSprite in layerImageList[7].Values)
